@@ -1,0 +1,46 @@
+{% extends 'templates_advanced/shared/base_sidebar.html' %}
+{% load static %}
+{% load todos_filter %}
+{% load todo_details %}
+{% load bootstrap_form %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block site_title %}
+    Home | My site
+{% endblock %}
+
+{% block sidebar_content %}
+    <p>Hello</p>
+{% endblock %}
+
+{% block content %}
+    {% bootstrap_form form=form method='post' action='my-action' %}
+
+    <form action="/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button>Submit</button>
+    </form>
+
+    <h1>Include:</h1>
+    <ul>
+        {#        {% for todo_entry in todos|todos_filter:state %}#}
+        {% for todo_entry in todos %}
+            <li>
+                {% include 'templates_advanced/partials/todo-item.html' with todo=todo_entry %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h1>Tags</h1>
+    <ul>
+        {% for todo_entry in todos %}
+            <li>
+                {% todo_details todo=todo_entry %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

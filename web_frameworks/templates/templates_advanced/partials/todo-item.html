@@ -1,0 +1,8 @@
+<div>
+    {% if todo.is_done %}
+        <strong class="text-success">{{ todo.text|truncatechars:5 }}</strong>
+    {% else %}
+        <strong class="text-danger">{{ todo.text|lower|truncatewords:1 }}</strong>
+    {% endif %}
+    {{ todo.description }}
+</div>

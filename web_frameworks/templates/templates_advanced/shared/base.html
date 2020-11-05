@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block site_title %}My site{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block styles %}{% endblock %}
+    {% block head_scripts %}{% endblock %}
+</head>
+<body>
+{% block body_start_scripts %}{% endblock %}
+
+{% include 'templates_advanced/partials/navigation.html' %}
+
+{% block site_content %}
+    Default site content
+{% endblock %}
+
+{% block body_end_scripts %}{% endblock %}
+</body>
+</html>
