@@ -1,0 +1,20 @@
+{% extends 'templates_advanced/shared/base.html' %}
+
+{% block site_content %}
+    <ul>
+        {% for pet in pets %}
+            <li>
+                {{ pet.name }}
+                <img src="{{ pet.image.url }}" alt="{{ pet.name }}"/>
+                <a href="{% url 'private file' pet.passport.url %}">Download passport</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form action="{% url 'pets' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button>Create</button>
+    </form>
+
+{% endblock %}

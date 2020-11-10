@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'templates_advanced',
+    'resources',
 ]
 
 MIDDLEWARE = [
@@ -112,10 +113,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     join(BASE_DIR, 'static'),
 )
+STATIC_ROOT = '/tmp/static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = join(BASE_DIR, 'media')
