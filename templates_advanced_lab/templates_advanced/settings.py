@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'pythons_auth',
 ]
 
 MIDDLEWARE = [
@@ -78,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'python_wiki_db',
-        'USER': 'postgres',
-        'PASSWORD': ''
+        'USER': 'demo',
+        'PASSWORD': '12345qwe'
     }
 }
 

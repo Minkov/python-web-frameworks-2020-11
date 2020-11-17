@@ -5,7 +5,7 @@
         {% for pet in pets %}
             <li>
                 {{ pet.name }}
-                <img src="{{ pet.image.url }}" alt="{{ pet.name }}"/>
+                <img src="{% url 'public file' pet.image.url %}" alt="{{ pet.name }}"/>
                 <a href="{% url 'private file' pet.passport.url %}">Download passport</a>
             </li>
         {% endfor %}
