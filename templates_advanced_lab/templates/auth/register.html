@@ -1,0 +1,21 @@
+{% extends 'common/base/base.html' %}
+{% block site_content %}
+    {% load bootstrap4 %}
+    <h1 class="text-center">Register</h1>
+    <div class="row d-flex justify-content-center">
+        <form method="POST" action="{% url 'register user' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in user_form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+            {% for field in profile_form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+
+            {% buttons %}
+                <button class="btn btn-primary">Submit</button>
+                <p>or <a href="{% url 'login user' %}">login</a></p>
+            {% endbuttons %}
+        </form>
+    </div>
+{% endblock %}

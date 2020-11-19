@@ -3,5 +3,9 @@
     <div class="card-body">
         <h5 class="card-title">{{ python.name }}</h5>
         <p class="card-text">{{ python.description }}</p>
+        <a href="{% url 'python details' python.id python.name %}">See more</a>
+        {% if python.can_delete %}
+            <button class="btn btn-danger">Delete</button>
+        {% endif %}
     </div>
 </div>

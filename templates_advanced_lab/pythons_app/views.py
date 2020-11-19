@@ -1,23 +1,51 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from pythons_core.decorators import group_required
-from .forms import PythonCreateForm
+from .forms import PythonCreateForm, FilterForm
 from .models import Python
 
 
-def index(req):
-    pythons = Python.objects.all()
+def extract_filter_values(params):
+    order = params['order'] if 'order' in params else FilterForm.ORDER_ASC
+    text = params['text'] if 'text' in params else ''
+
+    return {
+        'order': order,
+        'text': text,
+    }
+    # index?page=3&page_size=10
+
+def index(request):
+    params = extract_filter_values(request.GET)
+    order_by = 'name' if params['order'] == FilterForm.ORDER_ASC else '-name'
+    pythons = Python.objects.filter(name__icontains=params['text']).order_by(order_by)
+
+    for python in pythons:
+        python.can_delete = python.created_by_id == request.user.id
+
     context = {
         'pythons': pythons,
         'current_page': 'home',
+        'filter_form': FilterForm(initial=params),
         # 'categories': PythonCategory.objects.all(),
     }
 
-    return render(req, 'index.html', context)
+    return render(request, 'index.html', context)
 
-# @login_required(login_url='login user')
-@group_required(groups=['Regular User'])
+
+def python_details(request, pk, slug=None):
+    python = Python.objects.get(pk=pk)
+    if slug and python.name.lower() != slug.lower():
+        return redirect('404')
+    context = {
+        'python': python,
+    }
+
+    return render(request, 'pythons/details.html', context)
+
+
+# @group_required(groups=['Regular User'])
+@login_required
 def create(req):
     if req.method == 'GET':
         context = {
