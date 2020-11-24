@@ -17,15 +17,30 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <a class="nav-link" href="/">Home</a>
-            <a class="nav-link" href="{% url 'list pets' %}">All pet photos</a>
-            <a class="nav-link" href="{% url 'create pet' %}">Add pet photo</a>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+            <li>
+                <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Sign Up</a>
+            <li>
+                <a class="nav-link" href="{% url 'list pets' %}">All pet photos</a>
             </li>
+            <li>
+                <a class="nav-link" href="{% url 'create pet' %}">Add pet photo</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user profile' user.id %}">{{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signout user' %}">Sign out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Sing in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup user' %}">Sign Up</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

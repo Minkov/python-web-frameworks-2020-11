@@ -11,12 +11,13 @@
                 <h1 class="cover-heading"></h1>
                 <div class="row">
                     <div class="col-lg-6">
-                        <p class="lead">Already have an account? <br><a href="#" class="btn btn-lg btn-secondary">sign
+                        <p class="lead">Already have an account? <br><a href="{% url 'login' %}"
+                                                                        class="btn btn-lg btn-secondary">sign
                             in</a></p>
                     </div>
                     <div class="col-lg-6">
                         <p class="lead"> Do not have an account? <br>
-                            <a href="#" class="btn btn-lg btn-secondary">sign up</a>
+                            <a href="{% url 'signup user' %}" class="btn btn-lg btn-secondary">sign up</a>
                         </p>
                     </div>
                 </div>
