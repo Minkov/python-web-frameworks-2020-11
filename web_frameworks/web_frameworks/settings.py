@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'templates_advanced',
     'resources',
+    'cbv',
 ]
 
 MIDDLEWARE = [

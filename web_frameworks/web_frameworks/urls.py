@@ -11,5 +11,5 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('templates_advanced.urls')),
                   path('pets/', include('resources.urls')),
+                  path('cbv/', include('cbv.urls')),
               ] + media_files
-

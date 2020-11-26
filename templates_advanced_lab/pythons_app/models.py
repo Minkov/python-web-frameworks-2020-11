@@ -8,4 +8,7 @@ class Python(models.Model):
     image = models.ImageField(
         upload_to='pythons',
     )
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    # created_by = models.ForeignKey(User, on_delete=models.CASCADE)

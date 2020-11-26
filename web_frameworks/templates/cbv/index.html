@@ -1,0 +1,30 @@
+{% extends 'cbv/base/site.html' %}
+
+{% block site_content %}
+    <a href="{% url 'cbv pet create' %}">
+        Create pet
+    </a>
+    <ul>
+        {% for pet in pets %}
+            <li>
+                <a href="{% url 'cbv pets details' pet.id %}">
+                    {{ pet.name }}
+                </a>
+            </li>
+        {% endfor %}
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+        {% else %}
+            <a disabled="disabled">Prev</a>
+        {% endif %}
+        {{ page_obj.number }}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+        {#   {% for pet in object_list %}#}
+        {#        <li>#}
+        {#            {{ pet.name }}#}
+        {#        </li>#}
+        {#    {% endfor %}#}
+    </ul>
+{% endblock %}

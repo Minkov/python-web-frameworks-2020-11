@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'python_wiki_db',
-        'USER': 'demo',
-        'PASSWORD': '12345qwe'
+        'USER': 'postgres',
+        'PASSWORD': ''
     }
 }
 
