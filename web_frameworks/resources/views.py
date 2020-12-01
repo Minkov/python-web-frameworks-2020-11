@@ -1,5 +1,6 @@
 import os
 import re
+import time
 import urllib
 from os.path import join, isfile
 
@@ -12,6 +13,7 @@ from resources.models import Pet
 
 
 def pets(request):
+    time.sleep(5)
     if request.method == 'GET':
         pets = Pet.objects.all()
 
